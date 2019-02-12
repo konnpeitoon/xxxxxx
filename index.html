@@ -1,7 +1,144 @@
-<!DOCTYPE html>
-<head>
-</head>
-<body>
-    <p>aaa</p>
-</body>
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-with, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="content-type" content="text/html; charset = UTF-8">
+        <title>XX目XX科XX属</title>
+        <style>
+            body {
+            font-family: 'Abhaya Libre', Times, serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+            height: 2000px;
+            }
+            h1,
+            h2,
+            h3,
+            h4 {
+            font-family: 'Fira Sans', Helvetica, Arial, sans-serif;
+            font-weight: 800;
+            }
+            .centered {
+            margin: 0 auto;
+            display: table;
+            font-size: 60px;
+            margin-top: 100px;
+            }
+            .centered_p{
+            margin: 0 auto;
+            display: table;
+            font-size: 25px;
+            margin-top: 100px;
+            }
+            .box {
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 8px 20px;
+            line-height: 1.3em;
+            opacity: 0;
+            color: white;
+            width: 200px;
+            margin: 0 auto;
+            margin-top: 30px;
+            transform: translateZ(0);
+            perspective: 1000px;
+            backface-visibility: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1);
+            }
+            #app {
+            }
+        </style>
+    </head>
+    <body>
+        <h2 class="centered">「XX目XX科XX属」</h2>
+        <p class="centered_p">生物分類の一部を切り取り、さまざまな生き物を表現しています。</p>
+
+        <div id="app">
+                    <h2 class="centered">メンバー</h2>
+                    <div
+                    v-scroll="handleScroll"
+                    class="box"
+                    >
+                    <p>sunagaNatsuko</p>
+                    </div>
+                    <div
+                    v-scroll="handleScroll"
+                    class="box"
+                    >
+                    <p>ishiyamaYuki</p>
+                    </div>
+                    <h2 class="centered">開催期間</h2>
+                    <div
+                    v-scroll="handleScroll"
+                    class="box"
+                    >
+                    <p>ishiyamaYuki</p>
+                    </div>
+                    <h2 class="centered">開催場所</h2>
+                    <div
+                    v-scroll="handleScroll"
+                    class="box"
+                    >
+                    <p>ishiyamaYuki</p>
+                    </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+        <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+        <script>
+            var StarIcon = Vue.extend( {
+                props: {
+                    size: {
+                        type: Number,
+                        default: 20
+                    }
+                },
+                template:
+                '<svg :width="size" :height="size" viewBox="0 0 16 16">' +
+                    '<path fill="#FBC02D" d="M16 6.2l-5.3-1.12-2.7-4.69v13.01l4.94 2.21-.57-5.39 3.63-4.02zm0 0"/>' +
+                    '<path fill="#FDD835" d="M5.3 5.09l-5.3 1.11 3.63 4.02-.57 5.39 4.94-2.21v-13.01l-2.7 4.7zm0 0"/>' +
+                '</svg>'
+            } );
+            Vue.directive('scroll', {
+            inserted: function (el, binding) {
+                let f = function (evt) {
+                if (binding.value(evt, el)) {
+                    window.removeEventListener('scroll', f)
+                }
+                }
+                window.addEventListener('scroll', f)
+            }
+            });
+            var componentRoot = new Vue( {
+                // template:
+                // '<div>'+
+                //     '<star-icon></star-icon>'+
+                //     '<star-icon :size="40"></star-icon>' +
+                //     '<star-icon :size="60"></star-icon>' +
+                //     'hello!'+
+                // '</div>',
+                // components:{
+                //     StarIcon: StarIcon
+                // },
+                methods: {
+                    handleScroll: function (evt, el) {
+                    if (window.scrollY > 50) {
+                        el.setAttribute(
+                        'style',
+                        'opacity: 1; transform: translate3d(0, -10px, 0)'
+                        )
+                    }
+                    return window.scrollY > 100
+                    }
+                }
+            } );
+            // 要素にマウントする
+            componentRoot.$mount( '#app' );
+        </script>
+    </body>
 </html>
